@@ -9,10 +9,15 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.chobyo.cursomc.domains.Categoria;
 import com.chobyo.cursomc.domains.Cidade;
+import com.chobyo.cursomc.domains.Cliente;
+import com.chobyo.cursomc.domains.Endereco;
 import com.chobyo.cursomc.domains.Estado;
 import com.chobyo.cursomc.domains.Produto;
+import com.chobyo.cursomc.domains.enums.TipoCliente;
 import com.chobyo.cursomc.repositories.CategoriaRepository;
 import com.chobyo.cursomc.repositories.CidadeRepository;
+import com.chobyo.cursomc.repositories.ClienteRepository;
+import com.chobyo.cursomc.repositories.EnderecoRepository;
 import com.chobyo.cursomc.repositories.EstadoRepository;
 import com.chobyo.cursomc.repositories.ProdutoRepository;
 
@@ -28,6 +33,12 @@ public class CursomcApplication implements CommandLineRunner{
 	private CidadeRepository cidadeRepository;
 	@Autowired
 	private EstadoRepository estadoRepository;
+	
+	@Autowired
+	private ClienteRepository clienteRepository;
+	
+	@Autowired
+	private EnderecoRepository enderecoRepository;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(CursomcApplication.class, args);
@@ -64,6 +75,18 @@ public class CursomcApplication implements CommandLineRunner{
 		
 		estadoRepository.saveAll(Arrays.asList(est1, est2));
 		cidadeRepository.saveAll(Arrays.asList(cid1,cid2,cid3));
+		
+		Cliente cliente = new Cliente(null,"Maria Silva","maria@chobyo.com","22222222222",TipoCliente.PESSOAFISICA);
+		cliente.getTelefones().addAll(Arrays.asList("1111-1111","2222-2222"));
+		
+		Endereco end1 = new Endereco(null, "Rua Serrote","111","ap. 1", "Vila Serra", "12345-002",cliente, cid1);
+		Endereco end2 = new Endereco(null, "Rua Teste","222","ap. 2", "Vila 22222", "65478-002",cliente, cid2);
+		
+		cliente.getEnderecos().addAll(Arrays.asList(end1, end2));
+		
+		clienteRepository.saveAll(Arrays.asList(cliente));
+		enderecoRepository.saveAll(Arrays.asList(end1,end2));
+		
 		
 		
 	}

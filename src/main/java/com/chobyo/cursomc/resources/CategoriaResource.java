@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.chobyo.cursomc.domain.Categoria;
+import com.chobyo.cursomc.domains.Categoria;
 import com.chobyo.cursomc.services.CategoriaService;
 
 @RestController

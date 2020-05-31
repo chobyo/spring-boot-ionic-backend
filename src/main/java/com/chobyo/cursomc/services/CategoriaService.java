@@ -5,8 +5,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.chobyo.cursomc.domain.Categoria;
-import com.chobyo.cursomc.repository.CategoriaRepository;
+import com.chobyo.cursomc.domains.Categoria;
+import com.chobyo.cursomc.repositories.CategoriaRepository;
 
 @Service
 public class CategoriaService {

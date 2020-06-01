@@ -1,5 +1,4 @@
 package com.chobyo.cursomc.domains;
-
 import java.io.Serializable;
 
 import javax.persistence.Embeddable;
@@ -59,5 +58,7 @@ public class ItemPedidoPK implements Serializable {
 			return false;
 		return true;
 	}
+	
+	
 	
 }

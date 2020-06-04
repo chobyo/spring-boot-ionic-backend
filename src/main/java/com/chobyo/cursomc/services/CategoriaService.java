@@ -10,6 +10,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
+import com.chobyo.cursomc.DTO.CategoriaDTO;
 import com.chobyo.cursomc.domains.Categoria;
 import com.chobyo.cursomc.repositories.CategoriaRepository;
 import com.chobyo.cursomc.services.exception.DataIntegrityException;
@@ -54,5 +55,9 @@ public class CategoriaService {
 	{
 		PageRequest pageReques = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
 		return repo.findAll(pageReques);
+	}
+	
+	public Categoria fromDTO(CategoriaDTO objDto) {
+		return new Categoria(objDto.getId(), objDto.getNome());
 	}
 }

@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import com.chobyo.cursomc.DTO.CategoriaDTO;
 import com.chobyo.cursomc.domains.Categoria;
+import com.chobyo.cursomc.domains.Cliente;
 import com.chobyo.cursomc.repositories.CategoriaRepository;
 import com.chobyo.cursomc.services.exception.DataIntegrityException;
 import com.chobyo.cursomc.services.exception.ObjectNotFoundException;
@@ -38,10 +39,14 @@ public class CategoriaService {
 	}
 	
 	public Categoria update(Categoria obj) {
-		find(obj.getId());
-		return repo.save(obj);
+		Categoria newObj = find(obj.getId());
+		updateData(newObj, obj);
+		return repo.save(newObj);
 	}
 	
+	private void updateData(Categoria newObj, Categoria obj) {
+		newObj.setNome(obj.getNome());
+	}
 	public void delete(Integer id) {
 		find(id);
 		try {
